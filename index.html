@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二次元导航 · 轻量版</title>
+  <!-- 预连接关键域名 -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://api.r10086.com">
+  <link rel="dns-prefetch" href="https://picsum.photos">
+  <!-- Font Awesome 4.7 (精简版) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"></noscript>
+  <style>
+    /* 核心样式 — 完全替代 Tailwind 工具类 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      transition: background-color 0.5s;
+    }
+    /* 布局工具类 (原子化) */
+    .fixed { position: fixed; }
+    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+    .-z-20 { z-index: -20; }
+    .-z-10 { z-index: -10; }
+    .relative { position: relative; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-end { justify-content: flex-end; }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mt-8 { margin-top: 2rem; }
+    .space-y-3 > * + * { margin-top: 0.75rem; }
+    .p-3 { padding: 0.75rem; }
+    .px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+    .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+    .w-24 { width: 6rem; }
+    .h-24 { height: 6rem; }
+    .w-full { width: 100%; }
+    .h-full { height: 100%; }
+    .max-w-sm { max-width: 24rem; }
+    .rounded-full { border-radius: 9999px; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .border-4 { border-width: 4px; }
+    .border-white\/40 { border-color: rgba(255,255,255,0.4); }
+    .dark .border-white\/10 { border-color: rgba(255,255,255,0.1); }
+    .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+    .object-cover { object-fit: cover; }
+    .opacity-80 { opacity: 0.8; }
+    .dark .opacity-50 { opacity: 0.5; }
+    .backdrop-blur-md { backdrop-filter: blur(12px); }
+    .bg-white\/50 { background-color: rgba(255,255,255,0.5); }
+    .dark .bg-black\/70 { background-color: rgba(0,0,0,0.7); }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .font-bold { font-weight: 700; }
+    .font-medium { font-weight: 500; }
+    .text-gray-700 { color: #374151; }
+    .dark .text-gray-300 { color: #d1d5db; }
+    .text-gray-500 { color: #6b7280; }
+    .dark .text-gray-400 { color: #9ca3af; }
+    .text-gray-800 { color: #1f2937; }
+    .dark .text-white { color: #fff; }
+    .text-yellow-300 { color: #fcd34d; }
+    .bg-transparent { background-color: transparent; }
+    .outline-none { outline: none; }
+    .transition-colors { transition-property: background-color, border-color, color, fill, stroke; transition-duration: 500ms; }
+    .duration-500 { transition-duration: 500ms; }
+    /* 自定义毛玻璃 */
+    .glass {
+      background-color: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    .dark .glass {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    /* 导航按钮 */
+    .nav-btn {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      transition: all 0.3s;
+    }
+    .nav-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 15px -3px rgba(244, 114, 182, 0.2);
+    }
+    .dark .nav-btn:hover {
+      box-shadow: 0 10px 15px -3px rgba(244, 114, 182, 0.1);
+    }
+    /* 文字渐变 */
+    .text-gradient {
+      background: linear-gradient(to right, #f472b6, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* 焦点状态 */
+    a:focus-visible, button:focus-visible, input:focus-visible {
+      outline: 2px solid #f472b6;
+      outline-offset: 2px;
+    }
+    /* 图标容器 */
+    .icon-bg {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* 搜索框 */
+    .search-wrapper {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 16px;
+      background-color: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .dark .search-wrapper {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .search-wrapper:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(244, 114, 182, 0.2);
+      border-color: rgba(244, 114, 182, 0.3);
+    }
+    .search-wrapper:focus-within {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -8px rgba(244, 114, 182, 0.4), inset 0 0 12px 2px rgba(244, 114, 182, 0.25);
+      border-color: #f472b6;
+    }
+    .search-wrapper:active {
+      transform: scale(0.99);
+    }
+    .search-icon {
+      transition: all 0.2s ease;
+      color: #9ca3af;
+    }
+    .dark .search-icon {
+      color: #9ca3af;
+    }
+    .search-wrapper:focus-within .search-icon {
+      transform: scale(1.1);
+      color: #f472b6;
+    }
+    #search {
+      caret-color: #f472b6;
+      animation: smooth-blink 1.2s ease-in-out infinite;
+    }
+    @keyframes smooth-blink {
+      0%, 50%, 100% { caret-color: #f472b6; }
+      25%, 75% { caret-color: #a855f7; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #search { animation: none; }
+      .search-wrapper, .nav-btn { transition: none; }
+    }
+    #search::placeholder {
+      color: #9ca3af;
+      font-weight: 300;
+      transition: opacity 0.2s;
+    }
+    #search:focus::placeholder {
+      opacity: 0.7;
+    }
+    /* 主题图标切换 */
+    .dark .fa-moon-o { display: none; }
+    .dark .fa-sun-o { display: inline-block; }
+    .fa-sun-o { display: none; }
+  </style>
+</head>
+<body class="transition-colors duration-500">
+<!-- 背景图 (提高加载优先级) -->
+<div class="fixed inset-0 -z-20">
+  <img src="https://api.r10086.com/樱道随机图片api接口.php?图片系列=动漫综合2&w=1024&h=1024" 
+       alt="动漫背景"
+       class="w-full h-full object-cover opacity-80 dark:opacity-50"
+       fetchpriority="high"
+       loading="eager"
+       onerror="this.style.display='none'; this.parentElement.style.backgroundColor='#1e1b4b';">
+</div>
+<div class="fixed inset-0 -z-10 backdrop-blur-md bg-white/50 dark:bg-black/70 transition-colors duration-500"></div>
+
+<div class="relative min-h-screen max-w-sm mx-auto px-5 py-12 flex flex-col">
+  <!-- 主题切换 -->
+  <div class="flex justify-end mb-6">
+    <button id="themeBtn" class="glass rounded-full p-3" aria-label="切换深色/浅色模式">
+      <i class="fa fa-moon-o text-lg"></i>
+      <i class="fa fa-sun-o text-lg text-yellow-300"></i>
+    </button>
+  </div>
+
+  <!-- 头像 (小尺寸) -->
+  <div class="text-center mb-8">
+    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white/40 dark:border-white/10 shadow-xl mx-auto mb-4">
+      <img src="https://picsum.photos/id/1005/96/96" alt="用户头像" class="w-full h-full object-cover" loading="lazy">
+    </div>
+    <h1 class="text-2xl font-bold text-gradient mb-1">二次元导航</h1>
+    <p class="text-sm text-gray-700 dark:text-gray-300">一个链接，奔赴全世界</p>
+  </div>
+
+  <!-- 搜索框 -->
+  <div class="search-wrapper flex items-center px-5 py-4 mb-8">
+    <i class="search-icon fa fa-search mr-3 text-lg"></i>
+    <input id="search" type="text" placeholder="搜索动漫、资讯、Pixiv..." 
+           aria-label="搜索关键词"
+           class="w-full bg-transparent outline-none text-base text-gray-800 dark:text-white placeholder-gray-400">
+  </div>
+
+  <!-- 导航链接 -->
+  <div class="space-y-3 flex-1">
+    <a href="https://www.bilibili.com" target="_blank" rel="noopener noreferrer" class="nav-btn glass">
+      <span class="icon-bg bg-pink-100 dark:bg-pink-900/30 text-primary"><i class="fa fa-play-circle"></i></span>
+      <span class="font-medium text-gray-800 dark:text-white">哔哩哔哩</span>
+    </a>
+    <a href="https://www.pixiv.net" target="_blank" rel="noopener noreferrer" class="nav-btn glass">
+      <span class="icon-bg bg-blue-100 dark:bg-blue-900/30 text-blue-500"><i class="fa fa-picture-o"></i></span>
+      <span class="font-medium text-gray-800 dark:text-white">Pixiv 插画</span>
+    </a>
+    <a href="https://www.lofter.com" target="_blank" rel="noopener noreferrer" class="nav-btn glass">
+      <span class="icon-bg bg-red-100 dark:bg-red-900/30 text-red-400"><i class="fa fa-pencil"></i></span>
+      <span class="font-medium text-gray-800 dark:text-white">Lofter 同人</span>
+    </a>
+    <a href="https://www.bangumi.tv" target="_blank" rel="noopener noreferrer" class="nav-btn glass">
+      <span class="icon-bg bg-orange-100 dark:bg-orange-900/30 text-orange-500"><i class="fa fa-list"></i></span>
+      <span class="font-medium text-gray-800 dark:text-white">番组计划</span>
+    </a>
+    <a href="https://www.acfun.cn" target="_blank" rel="noopener noreferrer" class="nav-btn glass">
+      <span class="icon-bg bg-purple-100 dark:bg-purple-900/30 text-purple-500"><i class="fa fa-video-camera"></i></span>
+      <span class="font-medium text-gray-800 dark:text-white">ACFUN</span>
+    </a>
+  </div>
+
+  <!-- 底部版权 -->
+  <div class="mt-8 text-center text-xs text-gray-500 dark:text-gray-400">
+    © <span id="year"></span> 二次元导航 · 用热爱发电
+  </div>
+</div>
+
+<script>
+  (function() {
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const yearSpan = document.getElementById('year');
+    yearSpan.textContent = new Date().getFullYear();
+    const darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
+    function initTheme() {
+      const stored = localStorage.theme;
+      if (stored === 'dark') {
+        html.classList.add('dark');
+      } else if (stored === 'light') {
+        html.classList.remove('dark');
+      } else {
+        if (darkMedia.matches) {
+          html.classList.add('dark');
+        } else {
+          html.classList.remove('dark');
+        }
+      }
+    }
+    initTheme();
+    function handleSystemChange(e) {
+      if (!localStorage.theme) {
+        if (e.matches) {
+          html.classList.add('dark');
+        } else {
+          html.classList.remove('dark');
+        }
+      }
+    }
+    darkMedia.addEventListener('change', handleSystemChange);
+    themeBtn.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+    });
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.target.value.trim() !== '') {
+        window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(e.target.value.trim()));
+      }
+    });
+  })();
+</script>
+</body>
+</html>
