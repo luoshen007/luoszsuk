@@ -439,17 +439,17 @@
 </head>
 <body>
 
-<div class="download-card">
+<div class="download-card" role="main" aria-label="幻月空间下载页面">
   <div class="app-icon">
-    <img src="https://cloudflareimg.cdn.sn/i/69aab82eba1fb_1772795950.webp" alt="App Logo">
+    <img src="https://cloudflareimg.cdn.sn/i/69aab82eba1fb_1772795950.webp" alt="幻月空间应用图标">
   </div>
   <div class="app-name">
-    
+    幻月空间
     <span class="verified">官方认证</span>
   </div>
   <p class="app-desc">轻量 · 纯净 · 安全升级</p>
 
-  <div class="features-section">
+  <div class="features-section" aria-label="应用主要功能">
     <div class="features-title"><span>✨</span> 主要功能</div>
     <div class="features-grid">
       <div class="feature-item"><div class="feature-icon">⚡</div><span>一键极速启动，告别卡顿等待</span></div>
@@ -459,42 +459,42 @@
     </div>
   </div>
 
-  <div class="version-triangle">
+  <div class="version-triangle" aria-label="版本信息">
     <div class="triangle-row">
       <div class="version-chip"><span>📦</span> 版本 1.0.0</div>
       <div class="version-chip"><span>📱</span> 安卓 5.0+</div>
     </div>
     <div class="triangle-row">
       <div class="version-chip"><span>💾</span> 大小 8 MB</div>
-      <button class="changelog-btn" id="changelogBtn">📋 更新记录</button>
+      <button class="changelog-btn" id="changelogBtn" aria-label="查看更新记录">📋 更新记录</button>
     </div>
   </div>
 
-  <div class="download-feedback">
-    <div class="loading-indicator" id="loadingIndicator">
-      <div class="spinner"></div>
+  <div class="download-feedback" aria-live="polite">
+    <div class="loading-indicator" id="loadingIndicator" role="alert" aria-hidden="true">
+      <div class="spinner" aria-hidden="true"></div>
       <div class="status-text" id="statusMsg">正在启动下载引擎...</div>
     </div>
-    <div class="success-badge" id="successBadge">✅ 下载已开始，请查看通知栏</div>
+    <div class="success-badge" id="successBadge" role="alert" aria-hidden="true">✅ 下载已开始，请查看通知栏</div>
   </div>
 
-  <button class="download-btn" id="downloadBtn"><span>⬇️</span> 立即下载</button>
-  <div class="fallback-link" id="fallbackArea">
+  <button class="download-btn" id="downloadBtn" aria-label="立即下载幻月空间"><span>⬇️</span> 立即下载</button>
+  <div class="fallback-link" id="fallbackArea" aria-live="polite">
     <span>⚠️ 未自动下载？</span>
-    <a href="#" id="manualDownloadLink" target="_blank">👉 点击手动下载</a>
+    <a href="#" id="manualDownloadLink" target="_blank" rel="noopener noreferrer" aria-label="手动下载幻月空间">👉 点击手动下载</a>
   </div>
 
-  <div class="tab-container">
+  <div class="tab-container" role="tablist" aria-label="内容导航">
     <div class="tab-header">
-      <button class="tab-btn active" data-tab="tab1">🌐 网站导航</button>
-      <button class="tab-btn" data-tab="tab2">📱 相关推荐</button>
+      <button class="tab-btn active" data-tab="tab1" role="tab" aria-selected="true" aria-controls="tab1">🌐 网站导航</button>
+      <button class="tab-btn" data-tab="tab2" role="tab" aria-selected="false" aria-controls="tab2">📱 相关推荐</button>
     </div>
-    <div class="tab-panel active-panel" id="tab1">
+    <div class="tab-panel active-panel" id="tab1" role="tabpanel" aria-labelledby="tab1">
       <div class="nav-grid" id="navGrid"></div>
       <div class="divider-light"></div>
       <div class="tip-note" style="margin-top: 6px;"><span>🔗 点击卡片，确认后跳转</span></div>
     </div>
-    <div class="tab-panel" id="tab2">
+    <div class="tab-panel" id="tab2" role="tabpanel" aria-labelledby="tab2" hidden>
       <div class="rec-grid" id="recGrid"></div>
       <div class="divider-light"></div>
       <div class="tip-note" style="margin-top: 6px;"><span>⭐ 更多精品应用持续更新</span></div>
@@ -503,26 +503,26 @@
   <div class="tip-note"><span>📌 推荐在系统浏览器打开</span><span>🔐 官方正版 安全认证</span></div>
 </div>
 
-<div class="modal-mask" id="confirmModal">
+<div class="modal-mask" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-container">
     <div class="modal-header">
-      <div class="modal-icon" id="modalIcon">🔗</div>
-      <div class="modal-title" id="modalTitle">即将离开</div>
+      <div class="modal-icon" id="modalIcon" aria-hidden="true">🔗</div>
+      <div class="modal-title" id="modalTitle">访问确认</div>
       <div class="modal-desc" id="modalDesc">您将要访问外部链接，是否继续？</div>
       <div class="link-url" id="modalUrl">https://example.com</div>
     </div>
     <div class="modal-actions">
-      <div class="modal-btn cancel" id="modalCancel">取消</div>
-      <div class="modal-btn confirm" id="modalConfirm">继续访问</div>
+      <button class="modal-btn cancel" id="modalCancel" aria-label="取消操作">取消</button>
+      <button class="modal-btn confirm" id="modalConfirm" aria-label="继续访问外部链接">继续访问</button>
     </div>
   </div>
 </div>
 
-<div class="modal-mask" id="changelogModal">
+<div class="modal-mask" id="changelogModal" role="dialog" aria-modal="true" aria-labelledby="changelogTitle" aria-hidden="true">
   <div class="modal-container">
     <div class="modal-header">
-      <div class="modal-icon">📋</div>
-      <div class="modal-title">版本更新记录</div>
+      <div class="modal-icon" aria-hidden="true">📋</div>
+      <div class="modal-title" id="changelogTitle">版本更新记录</div>
       <div class="modal-desc">幻月空间 历史版本说明</div>
     </div>
     <div class="modal-content">
@@ -544,12 +544,15 @@
       </ul>
     </div>
     <div class="modal-actions">
-      <div class="modal-btn confirm" id="closeChangelogBtn">关闭</div>
+      <button class="modal-btn confirm" id="closeChangelogBtn" aria-label="关闭更新记录">关闭</button>
     </div>
   </div>
 </div>
 
 <script>
+'use strict';
+
+(function() {
   const LINKS = {
     nav: [
       { icon: '🏠', title: '官方网站', desc: '最新资讯 · 正版下载', url: 'https://www.qijisoft.com' },
@@ -567,64 +570,104 @@
     ]
   };
 
-  function renderNav() {
-    const container = document.getElementById('navGrid');
-    if (!container) return;
-    container.innerHTML = '';
-    LINKS.nav.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'nav-card';
-      card.setAttribute('data-url', item.url);
-      card.setAttribute('data-title', item.title);
-      card.setAttribute('data-icon', item.icon);
-      card.innerHTML = `<div class="nav-icon">${item.icon}</div><div class="nav-title">${item.title}</div><div class="nav-desc">${item.desc}</div>`;
-      card.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showConfirmModal(item.url, item.title, item.icon);
-      });
-      container.appendChild(card);
-    });
-  }
+  const DOWNLOAD_URL = "https://y.luoszs.uk/d/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AD/%E5%B9%BB%E6%9C%88%E7%A9%BA%E9%97%B4_1.0.0.apk?sign=oNh5HnF_wzHVQHzRwdcbTmgZKIlpNIhHNvKWx-f8YtE=:0";
 
-  function renderRec() {
-    const container = document.getElementById('recGrid');
-    if (!container) return;
-    container.innerHTML = '';
-    LINKS.rec.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'rec-card';
-      card.setAttribute('data-url', item.url);
-      card.setAttribute('data-title', item.name);
-      card.setAttribute('data-icon', item.icon);
-      card.innerHTML = `<div class="rec-icon">${item.icon}</div><div class="rec-info"><div class="rec-name">${item.name}</div><div class="rec-desc">${item.desc}</div></div><div class="rec-badge">${item.badge}</div>`;
-      card.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showConfirmModal(item.url, item.name, item.icon);
-      });
-      container.appendChild(card);
-    });
-  }
+  // DOM 元素缓存
+  const elements = {
+    navGrid: document.getElementById('navGrid'),
+    recGrid: document.getElementById('recGrid'),
+    confirmModal: document.getElementById('confirmModal'),
+    modalIcon: document.getElementById('modalIcon'),
+    modalTitle: document.getElementById('modalTitle'),
+    modalDesc: document.getElementById('modalDesc'),
+    modalUrlSpan: document.getElementById('modalUrl'),
+    modalCancel: document.getElementById('modalCancel'),
+    modalConfirm: document.getElementById('modalConfirm'),
+    changelogModal: document.getElementById('changelogModal'),
+    changelogBtn: document.getElementById('changelogBtn'),
+    closeChangelogBtn: document.getElementById('closeChangelogBtn'),
+    downloadBtn: document.getElementById('downloadBtn'),
+    loadingIndicator: document.getElementById('loadingIndicator'),
+    successBadge: document.getElementById('successBadge'),
+    fallbackArea: document.getElementById('fallbackArea'),
+    manualDownloadLink: document.getElementById('manualDownloadLink'),
+    statusMsgSpan: document.getElementById('statusMsg'),
+    tabBtns: document.querySelectorAll('.tab-btn'),
+    tabPanels: document.querySelectorAll('.tab-panel')
+  };
 
   let pendingUrl = '';
-  const confirmModal = document.getElementById('confirmModal');
-  const modalIcon = document.getElementById('modalIcon');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalUrlSpan = document.getElementById('modalUrl');
-  const cancelBtn = document.getElementById('modalCancel');
-  const confirmBtn = document.getElementById('modalConfirm');
+  let downloadTriggered = false;
 
+  // 工具函数：创建卡片
+  function createCard(type, item) {
+    const card = document.createElement('div');
+    card.className = type === 'nav' ? 'nav-card' : 'rec-card';
+    card.setAttribute('data-url', item.url);
+    card.setAttribute('data-title', type === 'nav' ? item.title : item.name);
+    card.setAttribute('data-icon', item.icon);
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', type === 'nav' ? `访问${item.title}` : `查看${item.name}`);
+
+    if (type === 'nav') {
+      card.innerHTML = `<div class="nav-icon" aria-hidden="true">${item.icon}</div><div class="nav-title">${item.title}</div><div class="nav-desc">${item.desc}</div>`;
+    } else {
+      card.innerHTML = `<div class="rec-icon" aria-hidden="true">${item.icon}</div><div class="rec-info"><div class="rec-name">${item.name}</div><div class="rec-desc">${item.desc}</div></div><div class="rec-badge">${item.badge}</div>`;
+    }
+
+    const handleCardClick = () => {
+      showConfirmModal(item.url, type === 'nav' ? item.title : item.name, item.icon);
+    };
+
+    card.addEventListener('click', (e) => {
+      e.stopPropagation();
+      handleCardClick();
+    });
+
+    // 支持键盘操作
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleCardClick();
+      }
+    });
+
+    return card;
+  }
+
+  // 渲染导航卡片
+  function renderNav() {
+    if (!elements.navGrid) return;
+    elements.navGrid.innerHTML = '';
+    LINKS.nav.forEach(item => {
+      elements.navGrid.appendChild(createCard('nav', item));
+    });
+  }
+
+  // 渲染推荐卡片
+  function renderRec() {
+    if (!elements.recGrid) return;
+    elements.recGrid.innerHTML = '';
+    LINKS.rec.forEach(item => {
+      elements.recGrid.appendChild(createCard('rec', item));
+    });
+  }
+
+  // 确认弹窗
   function showConfirmModal(url, title, icon = '🔗') {
     pendingUrl = url;
-    modalIcon.innerText = icon || '🔗';
-    modalTitle.innerText = '访问确认';
-    modalDesc.innerText = `您即将跳转到「${title}」页面`;
-    modalUrlSpan.innerText = url;
-    confirmModal.classList.add('active');
+    elements.modalIcon.innerText = icon || '🔗';
+    elements.modalTitle.innerText = '访问确认';
+    elements.modalDesc.innerText = `您即将跳转到「${title}」页面`;
+    elements.modalUrlSpan.innerText = url;
+    elements.confirmModal.classList.add('active');
+    elements.confirmModal.setAttribute('aria-hidden', 'false');
   }
 
   function hideConfirmModal() {
-    confirmModal.classList.remove('active');
+    elements.confirmModal.classList.remove('active');
+    elements.confirmModal.setAttribute('aria-hidden', 'true');
     pendingUrl = '';
   }
 
@@ -638,24 +681,18 @@
     }
   }
 
-  cancelBtn.addEventListener('click', hideConfirmModal);
-  confirmBtn.addEventListener('click', redirectToPending);
-  confirmModal.addEventListener('click', (e) => {
-    if (e.target === confirmModal) hideConfirmModal();
-  });
+  // 更新记录弹窗
+  function showChangelogModal() {
+    elements.changelogModal.classList.add('active');
+    elements.changelogModal.setAttribute('aria-hidden', 'false');
+  }
 
-  const changelogModal = document.getElementById('changelogModal');
-  const changelogBtn = document.getElementById('changelogBtn');
-  const closeChangelogBtn = document.getElementById('closeChangelogBtn');
+  function hideChangelogModal() {
+    elements.changelogModal.classList.remove('active');
+    elements.changelogModal.setAttribute('aria-hidden', 'true');
+  }
 
-  function showChangelogModal() { changelogModal.classList.add('active'); }
-  function hideChangelogModal() { changelogModal.classList.remove('active'); }
-  changelogBtn.addEventListener('click', showChangelogModal);
-  closeChangelogBtn.addEventListener('click', hideChangelogModal);
-  changelogModal.addEventListener('click', (e) => {
-    if (e.target === changelogModal) hideChangelogModal();
-  });
-
+  // Toast 提示
   function showToast(msg) {
     const toast = document.createElement('div');
     toast.innerText = msg;
@@ -664,21 +701,10 @@
     setTimeout(() => toast.remove(), 1500);
   }
 
-  const DOWNLOAD_URL = "https://y.luoszs.uk/d/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AD/%E5%B9%BB%E6%9C%88%E7%A9%BA%E9%97%B4_1.0.0.apk?sign=oNh5HnF_wzHVQHzRwdcbTmgZKIlpNIhHNvKWx-f8YtE=:0";
-
-  const downloadBtn = document.getElementById('downloadBtn');
-  const loadingIndicator = document.getElementById('loadingIndicator');
-  const successBadge = document.getElementById('successBadge');
-  const fallbackArea = document.getElementById('fallbackArea');
-  const manualDownloadLink = document.getElementById('manualDownloadLink');
-  const statusMsgSpan = document.getElementById('statusMsg');
-
-  manualDownloadLink.href = DOWNLOAD_URL;
-  let downloadTriggered = false;
-
+  // 下载功能
   function showFallbackMessage() {
-    if (fallbackArea.style.display !== 'block') {
-      fallbackArea.style.display = 'block';
+    if (elements.fallbackArea && elements.fallbackArea.style.display !== 'block') {
+      elements.fallbackArea.style.display = 'block';
     }
   }
 
@@ -687,88 +713,138 @@
       const newWindow = window.open(DOWNLOAD_URL, '_blank');
       if (newWindow === null || typeof newWindow === 'undefined') {
         showFallbackMessage();
-        if (statusMsgSpan) statusMsgSpan.innerText = '弹窗被拦截，请点击手动下载';
+        if (elements.statusMsgSpan) elements.statusMsgSpan.innerText = '弹窗被拦截，请点击手动下载';
         return false;
       }
       return true;
     } catch (err) {
+      console.error('Download failed:', err);
       showFallbackMessage();
-      statusMsgSpan.innerText = '启动失败，使用备用链接';
+      if (elements.statusMsgSpan) elements.statusMsgSpan.innerText = '启动失败，使用备用链接';
       return false;
     }
   }
 
   function startDownload() {
     if (downloadTriggered) {
-      if (fallbackArea.style.display !== 'block') showFallbackMessage();
+      showFallbackMessage();
       return;
     }
     downloadTriggered = true;
-    loadingIndicator.style.display = 'flex';
-    successBadge.style.display = 'none';
-    downloadBtn.disabled = true;
-    downloadBtn.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;"></div> 启动中...';
+    elements.loadingIndicator.style.display = 'flex';
+    elements.loadingIndicator.setAttribute('aria-hidden', 'false');
+    elements.successBadge.style.display = 'none';
+    elements.successBadge.setAttribute('aria-hidden', 'true');
+    elements.downloadBtn.disabled = true;
+    elements.downloadBtn.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;"></div> 启动中...';
 
     const success = performDownload();
     if (success) {
-      statusMsgSpan.innerText = '下载链接已打开，请稍候...';
+      elements.statusMsgSpan.innerText = '下载链接已打开，请稍候...';
       setTimeout(() => {
-        loadingIndicator.style.display = 'none';
-        successBadge.style.display = 'flex';
-        downloadBtn.innerHTML = '✅ 下载已开始';
-        setTimeout(() => {
-          if (fallbackArea.style.display !== 'block') fallbackArea.style.display = 'block';
-        }, 2000);
+        elements.loadingIndicator.style.display = 'none';
+        elements.loadingIndicator.setAttribute('aria-hidden', 'true');
+        elements.successBadge.style.display = 'flex';
+        elements.successBadge.setAttribute('aria-hidden', 'false');
+        elements.downloadBtn.innerHTML = '✅ 下载已开始';
+        setTimeout(showFallbackMessage, 2000);
       }, 500);
     } else {
-      statusMsgSpan.innerText = '自动下载被拦截，请点击下方链接';
-      loadingIndicator.style.display = 'none';
+      elements.statusMsgSpan.innerText = '自动下载被拦截，请点击下方链接';
+      elements.loadingIndicator.style.display = 'none';
+      elements.loadingIndicator.setAttribute('aria-hidden', 'true');
       showFallbackMessage();
-      downloadBtn.disabled = false;
-      downloadBtn.innerHTML = '<span>⚠️</span> 使用备用下载';
-      downloadBtn.onclick = function() { showFallbackMessage(); };
+      elements.downloadBtn.disabled = false;
+      elements.downloadBtn.innerHTML = '<span>⚠️</span> 使用备用下载';
+      elements.downloadBtn.onclick = showFallbackMessage;
     }
   }
 
-  downloadBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (downloadTriggered) {
-      if (fallbackArea.style.display !== 'block') showFallbackMessage();
-      return;
-    }
-    startDownload();
-  });
-
-  manualDownloadLink.addEventListener('click', function() {
-    showToast('正在打开下载链接...');
-  });
-
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.tab-panel');
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-tab');
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      panels.forEach(panel => panel.classList.remove('active-panel'));
-      document.getElementById(targetId).classList.add('active-panel');
+  // Tab 切换
+  function handleTabClick(btn) {
+    const targetId = btn.getAttribute('data-tab');
+    elements.tabBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
     });
-  });
-
-  if (navigator.userAgent.toLowerCase().includes('qq/') || navigator.userAgent.toLowerCase().includes('micromessenger')) {
-    const tip = document.createElement('div');
-    tip.style.background = '#FFF7E5';
-    tip.style.borderRadius = '20px';
-    tip.style.padding = '8px 12px';
-    tip.style.fontSize = '12px';
-    tip.style.marginTop = '14px';
-    tip.style.color = '#B45F06';
-    tip.innerHTML = '💡 当前浏览器可能限制下载，请点击右上角选择“在浏览器中打开”';
-    document.querySelector('.tab-container').insertAdjacentElement('afterend', tip);
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    elements.tabPanels.forEach(panel => {
+      panel.classList.remove('active-panel');
+      panel.setAttribute('hidden', 'true');
+    });
+    const targetPanel = document.getElementById(targetId);
+    if (targetPanel) {
+      targetPanel.classList.add('active-panel');
+      targetPanel.removeAttribute('hidden');
+    }
   }
 
-  renderNav();
-  renderRec();
+  // 初始化事件监听
+  function initEventListeners() {
+    elements.modalCancel.addEventListener('click', hideConfirmModal);
+    elements.modalConfirm.addEventListener('click', redirectToPending);
+    elements.confirmModal.addEventListener('click', (e) => {
+      if (e.target === elements.confirmModal) hideConfirmModal();
+    });
+
+    elements.changelogBtn.addEventListener('click', showChangelogModal);
+    elements.closeChangelogBtn.addEventListener('click', hideChangelogModal);
+    elements.changelogModal.addEventListener('click', (e) => {
+      if (e.target === elements.changelogModal) hideChangelogModal();
+    });
+
+    elements.downloadBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      startDownload();
+    });
+
+    elements.manualDownloadLink.addEventListener('click', () => {
+      showToast('正在打开下载链接...');
+    });
+
+    elements.tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => handleTabClick(btn));
+    });
+  }
+
+  // 检测 QQ/微信浏览器并添加提示
+  function checkBrowserCompatibility() {
+    const ua = navigator.userAgent.toLowerCase();
+    if (ua.includes('qq/') || ua.includes('micromessenger')) {
+      const tip = document.createElement('div');
+      tip.style.background = '#FFF7E5';
+      tip.style.borderRadius = '20px';
+      tip.style.padding = '8px 12px';
+      tip.style.fontSize = '12px';
+      tip.style.marginTop = '14px';
+      tip.style.color = '#B45F06';
+      tip.innerHTML = '💡 当前浏览器可能限制下载，请点击右上角选择"在浏览器中打开"';
+      const tabContainer = document.querySelector('.tab-container');
+      if (tabContainer) {
+        tabContainer.insertAdjacentElement('afterend', tip);
+      }
+    }
+  }
+
+  // 初始化应用
+  function init() {
+    if (elements.manualDownloadLink) {
+      elements.manualDownloadLink.href = DOWNLOAD_URL;
+    }
+    initEventListeners();
+    checkBrowserCompatibility();
+    renderNav();
+    renderRec();
+  }
+
+  // 启动
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 </script>
 </body>
 </html>
